@@ -41,6 +41,9 @@ async function problemA() {
 
   // asyncawait version
   // Tu código acá:
+  const stanza = await exerciseUtils.promisifiedReadFile('poem-one/stanza-01.txt')
+  exerciseUtils.blue(stanza)
+
 }
 
 async function problemB() {
@@ -56,6 +59,12 @@ async function problemB() {
 
   // asyncawait version
   // Tu código acá:
+
+  const asyncFunction = async (file) => {
+    exerciseUtils.blue(await exerciseUtils.promisifiedReadFile(file))
+  }
+  asyncFunction('poem-one/stanza-02.txt');
+  asyncFunction('poem-one/stanza-03.txt')
 }
 
 async function problemC() {
@@ -72,6 +81,11 @@ async function problemC() {
 
   // asyncawait version
   // Tu código acá:
+  const stanza2 = await exerciseUtils.promisifiedReadFile('poem-one/stanza-02.txt')
+  exerciseUtils.blue(stanza2);
+
+  const stanza3 = await exerciseUtils.promisifiedReadFile('poem-one/stanza-03.txt')
+  exerciseUtils.blue(stanza3)
 }
 
 async function problemD() {
@@ -85,8 +99,14 @@ async function problemD() {
     }
   );
 
-  // asyncawait version
+  // asyncawait version 
   // Tu código acá:
+  try {
+    const stanza4 = await exerciseUtils.promisifiedReadFile('poem-one/wrong-file-name.txt')
+    exerciseUtils.blue(stanza4)
+  } catch (error) {
+    exerciseUtils.magenta(error)
+  }
 }
 
 async function problemE() {
@@ -107,6 +127,14 @@ async function problemE() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    const stanza3 = await exerciseUtils.promisifiedReadFile('poem-one/stanza-03.txt');
+    exerciseUtils.blue(stanza3);
+    const stanza4 = await exerciseUtils.promisifiedReadFile('poem-one/wrong-file-name.txt')
+    exerciseUtils.blue(stanza4)
+  } catch (error) {
+    exerciseUtils.magenta(error)
+  }
 }
 
 async function problemF() {
@@ -132,4 +160,14 @@ async function problemF() {
 
   // asyncawait version
   // Tu código acá:
+
+  try {
+    const stanza3 = await exerciseUtils.promisifiedReadFile('poem-one/stanza-03.txt');
+    exerciseUtils.blue(stanza3);
+    const stanza4 = await exerciseUtils.promisifiedReadFile('poem-one/wrong-file-name.txt')
+    exerciseUtils.blue(stanza4)
+  } catch (error) {
+    exerciseUtils.magenta(error)
+  }
+  console.log('done');
 }
