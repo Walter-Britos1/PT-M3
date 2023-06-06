@@ -28,7 +28,19 @@ function problemA() {
 
   // promise version
   // Tu código acá:
-}
+ const promiseOne = exerciseUtils.promisifiedReadFile('poem-two/stanza-01.txt')
+ .then(stanza => {
+  exerciseUtils.blue(stanza)
+ });
+ const promiseTwo = exerciseUtils.promisifiedReadFile('poem-two/stanza-02.txt')
+ .then(stanza => {
+  exerciseUtils.blue(stanza)
+ })
+ Promise.all([promiseOne, promiseTwo])
+ .then(() => {
+  console.log('done')
+ })
+};
 
 function problemB() {
   let filenames = [1, 2, 3, 4, 5, 6, 7, 8].map(function (n) {
@@ -47,12 +59,27 @@ function problemB() {
 
   // promise version
   // Tu código acá:
-}
+  exerciseUtils.promisifiedReadFile(filenames)
+  .then(stanzas => {
+    stanzas.forEach((stanza ) => {
+      exerciseUtils.blue(stanza)
+    })
+  })
+  .catch(err => {
+    exerciseUtils.magenta(new Error(err))
+  })
+};
 
 // EJERCICIO EXTRA
 function problemC() {
   let fs = require("fs");
   function promisifiedWriteFile(filename, str) {
     // tu código acá:
+    return new Promise((resolve, reject) => {
+      fs.writeFile(filename, str, err => {
+        if (err) reject(err);
+        else resolve(str);
+      })
+    })
   }
 }
